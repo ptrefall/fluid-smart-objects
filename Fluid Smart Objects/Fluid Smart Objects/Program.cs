@@ -6,9 +6,13 @@ namespace Fluid
     {
         static void Main(string[] args)
         {
-            var player = new Player();
+            Console.WriteLine("At location 0");
 
-            
+            var world = new World();
+            var player = new Player(world);
+
+            player.Think();
+            player.Think();
 
             Console.WriteLine("The End!");
             Console.ReadKey();

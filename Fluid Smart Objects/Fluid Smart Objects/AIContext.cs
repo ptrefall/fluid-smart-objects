@@ -8,7 +8,7 @@ namespace Fluid
 {
     public enum AIWorldState
     {
-        Test
+        Location
     }
 
     public class AIContext : BaseContext
@@ -24,10 +24,12 @@ namespace Fluid
         public override byte[] WorldState => _worldState;
 
         public Player Player { get; }
+        public World World { get; }
 
-        public AIContext(Player player)
+        public AIContext(Player player, World world)
         {
             Player = player;
+            World = world;
         }
 
         public override void Init()
@@ -47,9 +49,9 @@ namespace Fluid
             return HasState((int) state, 1);
         }
 
-        public void SetState(AIWorldState state, bool value, EffectType type)
+        public void SetState(AIWorldState state, byte value, EffectType type)
         {
-            SetState((int) state, (byte) (value ? 1 : 0), true, type);
+            SetState((int) state, value, true, type);
         }
 
         public byte GetState(AIWorldState state)
